@@ -26,6 +26,10 @@
                     (typecheckeo b ctx [:bool])
                     (typecheckeo x ctx t)
                     (typecheckeo y ctx t)))
+        do      (let [[_ x y] ast]
+                  (l/fresh [t-x]
+                    (typecheckeo x ctx t-x)
+                    (typecheckeo y ctx t)))
         (let [[f arg] ast]
           (l/fresh [t-f t-arg]
             (typecheckeo f ctx [:-> t-arg t])

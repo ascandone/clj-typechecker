@@ -70,4 +70,12 @@
   
   (testing "if expressions should have have both arg as the same value"
     (is (= (typecheck '(lambda x (if true x 0)))
-           [:-> [:int] [:int]]))))
+           [:-> [:int] [:int]])))
+           
+  (testing "do expr should return the last value's type"
+    (is (= (typecheck '(do true 42))
+           [:int])))
+           
+  (testing "do expr should fail when one expr fails"
+    (is (= (typecheck '(do k 42))
+           nil))))
