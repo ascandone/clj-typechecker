@@ -13,7 +13,7 @@
                     l/fail)
     (list? ast)
       (case (first ast)
-        lambda  (let [[_ param body] ast]
+        fn  (let [[_ param body] ast]
                     (l/fresh [t-param t-body]
                       (typecheckeo body (assoc ctx param t-param) t-body)
                       (l/== t [:-> t-param t-body])))
